@@ -1,0 +1,9 @@
+<div class="main-container">
+  <div class="img-container">
+    <img src="https://angular.io/assets/images/logos/angular/angular_whiteTransparent.svg" alt="">
+  </div>
+  <p>GOOD WEATHER</p>
+  <div class="spacer"></div>
+  <input type="search" [value]="cityName" (input)="changeCityName($event)">
+  <button (click)="getWeather()">Find</button>
+</div>

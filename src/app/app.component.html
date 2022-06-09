@@ -1,0 +1,24 @@
+
+  <app-header class="header"
+    (sendTodayWeather)="getTodayWeather($event)"
+    (sendFiveDayWeather)="getFiveDayWeather($event)">
+  </app-header>
+
+  <div class="main-content">
+
+    <app-today-weather *ngIf="todayWeather"
+                       class="today-weather-container"
+                       [todayWeather]='todayWeather'>
+    </app-today-weather>
+
+    <app-five-day-weather
+      *ngIf="fiveDayWeather"
+      [fiveDayWeather]='fiveDayWeather'></app-five-day-weather>
+
+    <app-hourly-weather
+      *ngIf="fiveDayWeather"
+      [fiveDayWeather]='fiveDayWeather'>
+    </app-hourly-weather>
+
+  </div>
+

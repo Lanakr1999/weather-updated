@@ -1,0 +1,31 @@
+.header{
+  z-index: 10;
+}
+
+.main-content{
+  width: 90%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  margin-top: 3%;
+  box-shadow: 0 0 10px 10px;
+  z-index: 10;
+  background-color: #d6d6dad2;
+
+  .today-weather-container{
+    width: 90%;
+    height: 45%;
+    margin: auto;
+    margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: silver;
+    box-shadow: 0 0 3px 3px;
+  }
+
+}
+
