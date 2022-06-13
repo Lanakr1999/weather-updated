@@ -38,7 +38,7 @@ export class TodayWeatherComponent implements OnInit {
       return 'юго-запад';
     }
     if(285 < deg && deg < 345) {
-      return 'север-запад';
+      return 'северо-запад';
     }
     return `ошибка`;
   }

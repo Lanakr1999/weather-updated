@@ -1,5 +1,4 @@
-
-  <app-header class="header"
+<app-header class="header"
     (sendTodayWeather)="getTodayWeather($event)"
     (sendFiveDayWeather)="getFiveDayWeather($event)">
   </app-header>
@@ -11,9 +10,16 @@
                        [todayWeather]='todayWeather'>
     </app-today-weather>
 
+    <div class="header">
+      <h3>Пятидневный прогноз</h3>
+    </div>
+
     <app-five-day-weather
       *ngIf="fiveDayWeather"
-      [fiveDayWeather]='fiveDayWeather'></app-five-day-weather>
+      class="five-day-weather-container"
+      [fiveDayWeather]='fiveDayWeather'>
+    </app-five-day-weather>
+
 
     <app-hourly-weather
       *ngIf="fiveDayWeather"
@@ -22,3 +28,4 @@
 
   </div>
 
+  <div class="spacer-footer"></div>

@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { IFiveDayWeather, ITodayWeather } from 'src/app/shared/model/weather.model';
 import { WeatherService } from 'src/app/shared/service/weather.service';
+import {catchError} from "rxjs";
 
 @Component({
   selector: 'app-header',
@@ -28,14 +29,22 @@ export class HeaderComponent implements OnInit {
       this.cityWeather = todayWeather;
       this.sendTodayWeather.emit(this.cityWeather);
       console.log(this.cityWeather);
-    })
+    }),
+    catchError(err => {
+      console.log(err);
+      return [];
+    });
   }
 
   getFiveDayForecast(): void {
     this.weatherService.getFiveDayWeatherByCityName(this.cityName).subscribe((fiveDayWeather: IFiveDayWeather) => {
       this.fiveDayWeather = fiveDayWeather;
       this.sendFiveDayWeather.emit(this.fiveDayWeather);
-    })
+    }),
+      catchError(err => {
+        console.log(err);
+        return [];
+      });
   }
 
   changeCityName(value: any){
