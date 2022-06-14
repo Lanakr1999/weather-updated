@@ -10,6 +10,8 @@ export class AppComponent {
 
   todayWeather!: ITodayWeather;
   fiveDayWeather!: IFiveDayWeather;
+  hourlyWeatherList: any[] = [];
+  isHourlyWeatherActive: boolean = false;
 
   getTodayWeather(weather: ITodayWeather){
     this.todayWeather = weather;
@@ -18,5 +20,14 @@ export class AppComponent {
   getFiveDayWeather(weather: IFiveDayWeather){
     this.fiveDayWeather = weather;
   }
+
+  getHourlyWeather(weather: any[]) {
+    this.hourlyWeatherList = weather;
+    this.isHourlyWeatherActive = true
+  }
+
+  removeHourlyWeather(){
+    this.isHourlyWeatherActive = false;
+}
 
 }

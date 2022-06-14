@@ -1,4 +1,6 @@
- <div class="one-day-container" *ngFor="let day of fiveDayWeatherList">
+ <div class="one-day-container"
+      *ngFor="let day of fiveDayWeatherList"
+      (click)="getHourlyWeather(fiveDayWeather.list, hourlyWeatherDaysList, day)">
     <p>{{getDate(day.dt)}}</p>
     <div class="img-container">
       <img src="{{getImg(day.weather[0].icon)}}" alt="">

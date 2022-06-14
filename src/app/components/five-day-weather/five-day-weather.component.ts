@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { IFiveDayWeather } from 'src/app/shared/model/weather.model';
+import {catchError} from "rxjs";
 
 @Component({
   selector: 'app-five-day-weather',
@@ -10,8 +11,12 @@ export class FiveDayWeatherComponent implements OnInit {
 
 
   @Input() fiveDayWeather!: IFiveDayWeather;
+  @Output() sendHourlyWeatherList = new EventEmitter<any[]>();
+
 
   fiveDayWeatherList: any[] = [];
+  hourlyWeatherDaysList: any[] = [];
+  hourlyWeather: any[] = [];
 
   constructor() { }
 
@@ -19,15 +24,40 @@ export class FiveDayWeatherComponent implements OnInit {
     this.getFiveDaysList(this.fiveDayWeather.list);
   }
 
+  getHourlyWeather(fullList: any,list: any, day: any) {
+    try {
+      let numOfDay = list.indexOf(day);
+      let date = list[numOfDay].dt_txt;
+      let hoursArr = [];
+      date = date.split(" ");
+      date = date.shift();
+      for (let i = 0; i < fullList.length; i++) {
+        if (fullList[i].dt_txt.includes(date) && hoursArr.length < 8) {
+          hoursArr.push(fullList[i]);
+        }
+      }
+      if (hoursArr.length < 8) {
+        numOfDay = list.indexOf(day) + 1;
+        date = list[numOfDay].dt_txt;
+        date = date.split(" ");
+        date = date.shift();
+        for (let i = 0; i < fullList.length; i++) {
+          if (fullList[i].dt_txt.includes(date) && hoursArr.length < 8) {
+            hoursArr.push(fullList[i]);
+          }
+        }
+      }
+      this.hourlyWeather = hoursArr;
+      this.sendHourlyWeatherList.emit(this.hourlyWeather);
+    }
+    catch (err){
+      return 0;
+    }
+    return ;
+  }
+
   getFiveDaysList(list: any): void {
-    console.log(list);
     let fiveDayWeatherList = [];
-    // for(let i = 0; list.length; i++) {
-    //   if(list[i].dt_txt.includes('00:00:00')){
-    //     fiveDayWeatherList.push(list[i]);
-    //     break;
-    //   }
-    // }
     fiveDayWeatherList.push(list[0]);
     let listOfFiveDays = [];
     for(let i = 0; i < list.length; i++) {
@@ -42,7 +72,8 @@ export class FiveDayWeatherComponent implements OnInit {
       listOfFiveDays.pop();
     }
     this.fiveDayWeatherList = fiveDayWeatherList.concat(listOfFiveDays);
-    console.log(this.fiveDayWeatherList);
+    this.hourlyWeatherDaysList = fiveDayWeatherList.concat(listOfFiveDays);
+    // this.hourlyWeatherDaysList.shift();
   }
 
   getImg(imgId: string): string {

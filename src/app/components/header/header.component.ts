@@ -28,36 +28,22 @@ export class HeaderComponent implements OnInit {
     this.weatherService.getWeatherByCityName(this.cityName).subscribe((todayWeather: ITodayWeather) => {
       this.cityWeather = todayWeather;
       this.sendTodayWeather.emit(this.cityWeather);
-      console.log(this.cityWeather);
-    }),
-    catchError(err => {
-      console.log(err);
-      return [];
-    });
+    })
   }
 
   getFiveDayForecast(): void {
     this.weatherService.getFiveDayWeatherByCityName(this.cityName).subscribe((fiveDayWeather: IFiveDayWeather) => {
       this.fiveDayWeather = fiveDayWeather;
       this.sendFiveDayWeather.emit(this.fiveDayWeather);
-    }),
+    })
       catchError(err => {
-        console.log(err);
-        return [];
-      });
+        console.log('any');
+        return err;
+      })
   }
 
   changeCityName(value: any){
     this.cityName = value.target.value;
   }
-
-  // getFilms(): void {
-  //   this.activeSelector(this.selectorValue)
-  //   this.filmsService.getFilmsByTitle(this.inputValue, this.selectorValue).subscribe((filmsResponse: IFilmResponse) => {
-  //     this.filmsResponse = filmsResponse;
-  //     this.films = this.filmsResponse.Search;
-  //     this.bringFilms(this.films);
-  //   })
-  // }
 
 }

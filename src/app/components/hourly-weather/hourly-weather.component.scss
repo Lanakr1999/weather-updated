@@ -1,0 +1,30 @@
+.one-hour-container{
+  width: 22%;
+  height: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  background-color: silver;
+  box-shadow: 0 0 2px 2px;
+
+  p{
+    text-transform: uppercase;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 20px;
+  }
+
+  .img-container{
+    width: 40%;
+    height: 50%;
+    img{
+      height: 100%;
+      width: 100% ;
+    }
+  }
+
+  .lower-text{
+    text-transform: uppercase;
+    font-size: 15px;
+  }
+}

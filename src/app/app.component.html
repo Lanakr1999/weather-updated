@@ -1,6 +1,7 @@
 <app-header class="header"
     (sendTodayWeather)="getTodayWeather($event)"
-    (sendFiveDayWeather)="getFiveDayWeather($event)">
+    (sendFiveDayWeather)="getFiveDayWeather($event)"
+            (click)="removeHourlyWeather()">
   </app-header>
 
   <div class="main-content">
@@ -15,17 +16,23 @@
     </div>
 
     <app-five-day-weather
+      (sendHourlyWeatherList)="getHourlyWeather($event)"
       *ngIf="fiveDayWeather"
       class="five-day-weather-container"
       [fiveDayWeather]='fiveDayWeather'>
     </app-five-day-weather>
 
+  </div>
 
+  <div
+    class="dark-background"
+    *ngIf="isHourlyWeatherActive"
+    >
+    <button (click)="removeHourlyWeather()">Close</button>
     <app-hourly-weather
-      *ngIf="fiveDayWeather"
-      [fiveDayWeather]='fiveDayWeather'>
+      class="hourly-weather-container"
+      [hourlyWeatherList]='hourlyWeatherList'>
     </app-hourly-weather>
-
   </div>
 
   <div class="spacer-footer"></div>

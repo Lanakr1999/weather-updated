@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IFiveDayWeather } from 'src/app/shared/model/weather.model';
 
 @Component({
   selector: 'app-hourly-weather',
@@ -9,10 +8,23 @@ import { IFiveDayWeather } from 'src/app/shared/model/weather.model';
 export class HourlyWeatherComponent implements OnInit {
 
 
-  @Input() fiveDayWeather!: IFiveDayWeather;
+  @Input() hourlyWeatherList!: any[];
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  getImg(imgId: string): string {
+    return `http://openweathermap.com/img/wn/${imgId}@2x.png`;
+  }
+
+  getTemperature(temp: number): number {
+    return Math.round(temp);
+  }
+  getTime(hour: any): string{
+    let time;
+    time = hour.dt_txt.split(" ");
+    time.shift();
+    return time;
+  }
 }
