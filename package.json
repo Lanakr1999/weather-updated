@@ -4,10 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "deploy": "gh-pages -d build"
+    "test": "ng test"
   },
   "private": true,
   "home": "https://lanakr1999.github.io/weather-updated/",
